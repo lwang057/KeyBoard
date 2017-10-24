@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/keyboard_view_top_rl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/color_keyboard_background"
+        android:visibility="visible">
+        <!--android:background="@drawable/keyboard_general_nom"-->
+
+        <TextView
+
+            android:id="@+id/keyboard_tips_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@mipmap/safe"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="Keyboard安全输入"
+            android:textColor="@color/color_white" />
+
+        <TextView
+            android:id="@+id/keyboard_view_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="完成"
+            android:visibility="gone"
+            android:textColor="@color/color_white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/color_keyboard_background"
+        android:gravity="center">
+
+        <!-- 普通数字键盘样式 -->
+        <com.ziyeyouhu.library.PpKeyBoardView
+            android:id="@+id/keyboard_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/color_keyboard_background"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:keyBackground="@drawable/btn_keyboard_key"
+            android:keyTextColor="@color/color_white"
+            android:keyTextSize="24dp"
+            android:labelTextSize="20dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="0.0"
+            android:visibility="gone" />
+
+
+        <!-- 字母键盘样式 -->
+        <com.ziyeyouhu.library.PpKeyBoardView
+            android:id="@+id/keyboard_view_abc_sym"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/color_keyboard_background"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:keyBackground="@drawable/btn_keyboard_key"
+            android:keyPreviewHeight="70dp"
+            android:keyPreviewLayout="@layout/keyboardd_preview"
+            android:keyPreviewOffset="-3dp"
+            android:keyTextColor="@color/color_white"
+            android:keyTextSize="20dp"
+            android:labelTextSize="16dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="0.0"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+</LinearLayout>

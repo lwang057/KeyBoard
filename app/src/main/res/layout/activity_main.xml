@@ -16,13 +16,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:background="@color/colorAccent" />
 
             <EditText
@@ -30,8 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@null"
-                android:hint="请输入密码"
-                android:inputType="textPassword"
+                android:hint="请输入账号："
                 android:paddingLeft="10dp"
                 android:singleLine="true" />
 
@@ -40,11 +40,10 @@
                 android:layout_height="1dp"
                 android:background="@color/colorAccent" />
 
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/colorAccent" />
 
             <EditText
@@ -52,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@null"
-                android:hint="请输入密码"
+                android:hint="请输入密码："
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:singleLine="true" />
@@ -61,6 +60,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="60dp"
+                android:background="@color/color_1a98ff"
+                android:gravity="center"
+                android:text="登录"
+                android:textColor="@color/color_white"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

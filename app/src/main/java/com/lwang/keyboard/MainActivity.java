@@ -2,7 +2,11 @@ package com.lwang.keyboard;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         etPwd = (EditText) findViewById(R.id.et_pwd);
         tvLogin = (TextView) findViewById(R.id.tv_login);
 
+        setCustomSlection(etPwd);
         initKeyboard();
 
 
@@ -62,6 +67,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 禁止EditText复制粘贴
+     *
+     * @param et
+     */
+    public void setCustomSlection(EditText et) {
+
+        et.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+
+            }
+        });
+        et.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        et.setLongClickable(false);
+    }
+
+
+    /**
+     * 隐藏安全键盘
+     */
+    private void hideKeyBoard() {
+
+        keyboardUtil.hideSystemKeyBoard();
+        keyboardUtil.hideAllKeyBoard();
+        keyboardUtil.hideKeyboardLayout();
+    }
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -78,16 +127,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    /**
-     * 隐藏安全键盘
-     */
-    private void hideKeyBoard() {
-
-        keyboardUtil.hideSystemKeyBoard();
-        keyboardUtil.hideAllKeyBoard();
-        keyboardUtil.hideKeyboardLayout();
-    }
 
 
 }

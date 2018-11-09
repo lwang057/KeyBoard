@@ -30,19 +30,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
+        initListener();
+        initKeyboard();
+    }
 
+    private void initView() {
         parent = (LinearLayout) findViewById(R.id.parent);
         scroll = (ScrollView) findViewById(R.id.scroll);
         etAccess = (EditText) findViewById(R.id.et_access);
         etPwd = (EditText) findViewById(R.id.et_pwd);
         tvLogin = (TextView) findViewById(R.id.tv_login);
+    }
 
-        setCustomSlection(etPwd);
-        initKeyboard();
-
-
+    private void initListener() {
         tvLogin.setOnClickListener(v -> {
-
             hideKeyBoard();
             String access = etAccess.getText().toString().trim();
             String pwd = etPwd.getText().toString().trim();
@@ -50,10 +52,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    /**
-     * 初始化键盘
-     */
     private void initKeyboard() {
 
         keyboardUtil = new KeyboardUtil(this, parent, scroll);
@@ -66,11 +64,31 @@ public class MainActivity extends AppCompatActivity {
         etPwd.setOnTouchListener(new KeyboardTouchListener(keyboardUtil, KeyboardUtil.INPUTTYPE_ABC, -1));
     }
 
+    /**
+     * 隐藏安全键盘
+     */
+    private void hideKeyBoard() {
+        keyboardUtil.hideSystemKeyBoard();
+        keyboardUtil.hideAllKeyBoard();
+        keyboardUtil.hideKeyboardLayout();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (keyboardUtil != null && keyboardUtil.isShow) {
+                hideKeyBoard();
+            } else {
+                return super.onKeyDown(keyCode, event);
+            }
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
 
     /**
      * 禁止EditText复制粘贴
-     *
-     * @param et
      */
     public void setCustomSlection(EditText et) {
 
@@ -98,35 +116,6 @@ public class MainActivity extends AppCompatActivity {
         et.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         et.setLongClickable(false);
     }
-
-
-    /**
-     * 隐藏安全键盘
-     */
-    private void hideKeyBoard() {
-
-        keyboardUtil.hideSystemKeyBoard();
-        keyboardUtil.hideAllKeyBoard();
-        keyboardUtil.hideKeyboardLayout();
-    }
-
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-
-            if (keyboardUtil != null && keyboardUtil.isShow) {
-                hideKeyBoard();
-            } else {
-                return super.onKeyDown(keyCode, event);
-            }
-            return false;
-        } else {
-            return super.onKeyDown(keyCode, event);
-        }
-    }
-
 
 
 }
